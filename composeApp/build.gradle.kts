@@ -35,6 +35,9 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             implementation(libs.sqldelight.android)
+
+            api(compose.preview)
+            api(compose.uiTooling)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -43,6 +46,8 @@ kotlin {
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+
+            implementation(libs.dateTime)
         }
     }
 }
@@ -71,6 +76,9 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    buildFeatures {
+        compose = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
