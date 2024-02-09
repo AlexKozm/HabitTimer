@@ -1,5 +1,6 @@
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -48,6 +49,7 @@ kotlin {
             implementation(compose.components.resources)
 
             implementation(libs.dateTime)
+            implementation(libs.koin)
         }
     }
 }
