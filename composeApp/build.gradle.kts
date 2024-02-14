@@ -36,7 +36,6 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             implementation(libs.sqldelight.android)
-
             api(compose.preview)
             api(compose.uiTooling)
         }
@@ -50,6 +49,7 @@ kotlin {
 
             implementation(libs.dateTime)
             implementation(libs.koin)
+            implementation(libs.sqldelightCoroutines)
         }
     }
 }
@@ -85,6 +85,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)

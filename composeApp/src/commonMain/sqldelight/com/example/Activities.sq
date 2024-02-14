@@ -1,0 +1,24 @@
+CREATE VIEW ActivitiesTable AS
+SELECT
+    ActivitiesTitlesTable.id AS titleId,
+    ActivitiesTitlesTable.title,
+    ActivitiesRecordsTable.id AS recordId,
+    ActivitiesRecordsTable.endTime,
+    ActivitiesRecordsTable.startTime
+FROM ActivitiesTitlesTable
+JOIN ActivitiesRecordsTable ON ActivitiesRecordsTable.titleId = ActivitiesTitlesTable.id;
+
+readByTitleIdsBetween:
+SELECT * FROM ActivitiesTable WHERE titleId IN ? AND startTime >= ? AND endTime < ?;
+
+readActivitiesBetween:
+SELECT * FROM ActivitiesTable WHERE startTime >= ? AND endTime <= ?;
+
+readRunningActivities:
+SELECT * FROM ActivitiesTable WHERE endTime IS NULL;
+
+readAllByTitleId:
+SELECT * FROM ActivitiesTable WHERE titleId = ?;
+
+
+

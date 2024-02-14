@@ -1,0 +1,29 @@
+CREATE TABLE ActivitiesRecordsTable (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    startTime INTEGER NOT NULL,
+    endTime INTEGER,
+    titleId INTEGER NOT NULL,
+
+    FOREIGN KEY (titleId) REFERENCES ActivitiesTitlesTable(id) ON DELETE CASCADE
+);
+
+CREATE UNIQUE INDEX RecordsWithNullEndTime ON ActivitiesRecordsTable(titleId, id, endTime)
+WHERE endTime IS NULL;
+
+createRecord:
+INSERT INTO ActivitiesRecordsTable (titleId, startTime, endTime)
+VALUES (?, ?, ?);
+
+updateRecordById:
+UPDATE ActivitiesRecordsTable SET
+    startTime = ?,
+    endTime = ?
+WHERE id = ?;
+
+deleteRecord:
+DELETE FROM ActivitiesRecordsTable WHERE id = ?;
+
+updateRecordWithNullEndTimeByTitleId:
+UPDATE ActivitiesRecordsTable SET
+    endTime = ?
+WHERE id IN (SELECT id FROM ActivitiesRecordsTable WHERE endTime IS NULL AND titleId = ?);

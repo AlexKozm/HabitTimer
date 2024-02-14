@@ -1,0 +1,18 @@
+CREATE TABLE ActivitiesTitlesTable (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL
+);
+
+createTitle:
+INSERT INTO ActivitiesTitlesTable(title) VALUES (?);
+
+updateTitleById:
+UPDATE ActivitiesTitlesTable SET
+    title = ?
+WHERE id = ?;
+
+deleteTitleAndAllRecordsByTitleId:
+DELETE FROM ActivitiesTitlesTable WHERE id = ?;
+
+readAllTItles:
+SELECT * FROM ActivitiesTitlesTable;

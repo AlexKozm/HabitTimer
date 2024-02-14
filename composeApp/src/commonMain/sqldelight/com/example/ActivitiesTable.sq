@@ -1,7 +1,0 @@
-CREATE TABLE ActivitiesTable (
-    startTime TEXT NOT NULL,
-    endTime TEXT
-);
-
-selectByStartTime:
-SELECT * FROM ActivitiesTable WHERE startTime = ?;
