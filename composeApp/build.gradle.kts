@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.ide.kmp.KotlinAndroidSourceSetMarker.Companion.android
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.ir.backend.js.compile
@@ -7,6 +8,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.ksp) apply true
 }
 
 kotlin {
@@ -39,17 +41,22 @@ kotlin {
             api(compose.preview)
             api(compose.uiTooling)
         }
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.components.resources)
+        commonMain {
+            kotlin.srcDirs("build/generated/ksp/metadata/commonMain/kotlin")
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
 
-            implementation(libs.dateTime)
-            implementation(libs.koin)
-            implementation(libs.sqldelightCoroutines)
+                implementation(libs.dateTime)
+                implementation(libs.koin)
+                implementation(libs.sqldelightCoroutines)
+                implementation(libs.koin.annotations)
+                implementation(libs.koin.compose)
+            }
         }
     }
 }
@@ -100,4 +107,18 @@ sqldelight {
             packageName.set("com.example")
         }
     }
+}
+
+dependencies  {
+    add("kspCommonMainMetadata", libs.koin.ksp)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
+    if(name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+ksp {
+    arg("KOIN_CONFIG_CHECK","true")
 }

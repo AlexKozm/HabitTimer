@@ -11,7 +11,9 @@ import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.plus
+import org.koin.core.annotation.Single
 
+@Single
 class ActivitiesRepo(
     private val activitiesDS: ActivitiesDS
 ) {

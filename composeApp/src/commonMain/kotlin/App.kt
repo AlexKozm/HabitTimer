@@ -16,10 +16,16 @@ import app.cash.sqldelight.db.SqlDriver
 import com.example.Database
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.KoinContext
+import org.koin.core.KoinApplication
+import org.koin.dsl.koinApplication
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun App() {
+    KoinContext {
+
+    }
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         val greeting = remember { Greeting().greet() }

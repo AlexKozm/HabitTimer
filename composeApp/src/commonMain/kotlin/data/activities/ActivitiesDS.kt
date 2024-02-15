@@ -19,8 +19,10 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
+import org.koin.core.annotation.Single
 import kotlin.coroutines.CoroutineContext
 
+@Single
 class ActivitiesDS(
     private val externalContext: CoroutineContext = Dispatchers.IO,
     driver: SqlDriver
