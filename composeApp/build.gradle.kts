@@ -33,20 +33,23 @@ kotlin {
     
     sourceSets {
         
-        androidMain.dependencies {
-            implementation(libs.compose.ui.tooling.preview)
-            implementation(libs.androidx.activity.compose)
+        androidMain {
+            dependencies {
+                implementation(libs.compose.ui.tooling.preview)
+                implementation(libs.androidx.activity.compose)
 
-            implementation(libs.sqldelight.android)
-            api(compose.preview)
-            api(compose.uiTooling)
+                implementation(libs.sqldelight.android)
+                api(compose.preview)
+                api(compose.uiTooling)
+                implementation(libs.koin.android)
+            }
         }
         commonMain {
             kotlin.srcDirs("build/generated/ksp/metadata/commonMain/kotlin")
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
                 implementation(compose.ui)
                 @OptIn(ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
@@ -119,6 +122,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
     }
 }
 
-ksp {
-    arg("KOIN_CONFIG_CHECK","true")
-}
+//ksp {
+//    arg("KOIN_CONFIG_CHECK","true")
+//}

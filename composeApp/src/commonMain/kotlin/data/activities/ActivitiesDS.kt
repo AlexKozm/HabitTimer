@@ -25,9 +25,8 @@ import kotlin.coroutines.CoroutineContext
 @Single
 class ActivitiesDS(
     private val externalContext: CoroutineContext = Dispatchers.IO,
-    driver: SqlDriver
+    private val database: Database
 ) {
-    private val database = Database(driver)
     private val recordsQueries = database.activitiesRecordsQueries
     private val titlesQueries = database.activitiesTitlesQueries
     private val activitiesQueries = database.activitiesQueries

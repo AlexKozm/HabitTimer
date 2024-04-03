@@ -6,6 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import data.activities.dto.ActivityView
 import kotlinx.datetime.DateTimePeriod
 import ui.ActivityScreen
+import ui.common.App
 
 @Preview
 @Composable

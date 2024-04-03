@@ -44,6 +44,8 @@ class ActivitiesRepo(
         }
     }
 
+    suspend fun createActivity(title: String) = activitiesDS.createTitle(title)
+
     fun readTitlesOfRunningActivities() = activitiesDS.readRunningActivities().map { list ->
         list.map { it }.toSet()
     }
@@ -57,4 +59,5 @@ class ActivitiesRepo(
     suspend fun endRecordByTitleId(titleId: Long) = activitiesDS
         .updateRecordWithNullEndTimeByTitleId(titleId, now)
 
+    fun readAllTitles() = activitiesDS.readAllTitles()
 }

@@ -63,4 +63,10 @@ class ActivitiesViewModel(
         if (titleId in runningActivities.value.map { it.titleId })
             activitiesRepo.endRecordByTitleId(titleId)
     }
+
+    fun createActivity(title: String) = viewModelScope.launch {
+        activitiesRepo.createActivity(title)
+    }
+
+    fun readAllTitles() = activitiesRepo.readAllTitles()
 }
