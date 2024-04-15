@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import data.activities.dto.ActivityView
 import kotlinx.datetime.DateTimePeriod
-import ui.ActivityScreen
 import ui.common.App
 
 @Preview
@@ -18,5 +17,5 @@ fun ActivitiesScreenPreview() {
             DateTimePeriod(0, 0, 0, 1),
             false)
     )
-    ActivityScreen(list, { })
+//    ActivityScreen(list, { })
 }

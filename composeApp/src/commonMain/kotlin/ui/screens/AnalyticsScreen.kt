@@ -11,11 +11,8 @@ import ui.navigation.Screen
 import ui.navigation.ScreenTitle
 
 
-@Single
-class AnalyticsScreen : Screen, KoinComponent {
-    companion object : ScreenTitle
-    override val titleObj = Companion
-//    override val vm: ActivitiesViewModel by inject()
+
+object AnalyticsScreen : Screen, KoinComponent {
 
     @Composable
     override fun screen(modifier: Modifier, stack: BackStackState) {

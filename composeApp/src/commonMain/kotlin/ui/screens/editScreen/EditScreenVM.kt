@@ -1,10 +1,9 @@
-package ui.screens.EditScreen
+package ui.screens.editScreen
 
 import data.activities.ActivitiesRepo
 import kotlinx.coroutines.launch
 import org.koin.core.annotation.Scope
 import org.koin.core.annotation.Scoped
-import org.koin.core.annotation.Single
 import viewModels.CommonViewModel
 
 @Scope(EditScreen::class)

@@ -9,10 +9,14 @@ FROM ActivitiesTitlesTable
 JOIN ActivitiesRecordsTable ON ActivitiesRecordsTable.titleId = ActivitiesTitlesTable.id;
 
 readByTitleIdsBetween:
-SELECT * FROM ActivitiesTable WHERE titleId IN ? AND startTime >= ? AND endTime < ?;
+SELECT * FROM ActivitiesTable
+WHERE titleId IN ? AND startTime >= ? AND (endTime <= ?);
 
 readActivitiesBetween:
-SELECT * FROM ActivitiesTable WHERE startTime >= ? AND endTime <= ?;
+SELECT * FROM ActivitiesTable WHERE (startTime >= ?) AND (endTime <= ?);
+
+readActivitiesAfter:
+SELECT * FROM ActivitiesTable WHERE (startTime >= ?);
 
 readRunningActivities:
 SELECT * FROM ActivitiesTable WHERE endTime IS NULL;

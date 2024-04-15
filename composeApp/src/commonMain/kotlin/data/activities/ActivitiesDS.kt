@@ -76,17 +76,24 @@ class ActivitiesDS(
 
     fun readActivitiesInRange(
         startTime: LocalDateTime,
-        endTime: LocalDateTime?
-    ) = activitiesQueries.readActivitiesBetween(startTime.toMillis(), endTime?.toMillis())
-        .asFlow().mapToList(externalContext).map { list -> list.map { activityRecord ->
-            activityRecord.asActivityRecord()
-        } }
+        endTime: LocalDateTime
+    ) = activitiesQueries.readActivitiesBetween(startTime.toMillis(), endTime.toMillis())
+        .asFlow().mapToList(externalContext).map { list ->
+            list.map { activityRecord -> activityRecord.asActivityRecord() }
+        }
+
+    fun readActivitiesAfter(
+        startTime: LocalDateTime
+    ) = activitiesQueries.readActivitiesAfter(startTime.toMillis())
+        .asFlow().mapToList(externalContext).map { list ->
+            list.map { activityRecord -> activityRecord.asActivityRecord() }
+        }
 
     fun readAllTitles() = titlesQueries.readAllTItles().asFlow().mapToList(externalContext)
         .map { list -> list.map { title -> title.asActivityTitle() } }
 
-    fun readAllByTitleId(titleId: Long) = activitiesQueries.readAllByTitleId(titleId)
-        .executeAsList()
+    fun readAllRecordsByTitleId(titleId: Long) = activitiesQueries.readAllByTitleId(titleId)
+        .asFlow().mapToList(externalContext).map { list -> list.map { it.asActivityRecord() } }
 
     fun readRunningActivities() = activitiesQueries.readRunningActivities().asFlow()
         .mapToList(externalContext).map { list -> list.map { record -> record.asActivityRecord() } }

@@ -27,3 +27,6 @@ updateRecordWithNullEndTimeByTitleId:
 UPDATE ActivitiesRecordsTable SET
     endTime = ?
 WHERE id IN (SELECT id FROM ActivitiesRecordsTable WHERE endTime IS NULL AND titleId = ?);
+
+readAllByTitleId:
+SELECT * FROM ActivitiesRecordsTable WHERE titleId = ?;

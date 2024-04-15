@@ -1,4 +1,4 @@
-package ui.screens.EditScreen
+package ui.screens.editScreen
 
 import androidx.compose.runtime.Composable
 
